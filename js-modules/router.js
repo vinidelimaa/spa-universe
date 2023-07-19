@@ -19,7 +19,7 @@ export class Router {
     const { pathname } = window.location
     // same as: 'const pathname = window.location.pathname'
 
-    const route = this.routes[pathname] || this.routes[404]
+    const route = this.routes[pathname] || this.routes['404']
 
     fetch(route)
       .then((data) => {
@@ -28,15 +28,17 @@ export class Router {
         }
         return data.text()
       })
-      .then(
-        (html) => (document.querySelector("#app").innerHTML = html),
-        this.bgChange(pathname)
-      )
+      .then((html) => {
+        ;(document.querySelector("#app").innerHTML = html),
+          this.bgChange(pathname)
+      })
+      .catch((error) => {
+        window.location.href = this.routes["404"]
+      })
   }
 
   bgChange(pathname) {
     const body = document.body
-    const cssChange = document.querySelector("#cssChange")
 
     switch (pathname) {
       case "/universe":
