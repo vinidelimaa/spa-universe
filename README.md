@@ -4,7 +4,7 @@
 
 This project was developed using the following technologies:
 
-- HTML e CSS
+- HTML & CSS
 - JavaScript
 
 ## 💻 Project
